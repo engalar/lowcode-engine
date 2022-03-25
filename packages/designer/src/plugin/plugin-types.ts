@@ -116,7 +116,6 @@ interface ILowCodePluginManagerPluginAccessor {
 export interface ILowCodePluginManagerCore {
   register(
     pluginConfigCreator: (ctx: ILowCodePluginContext, pluginOptions?: any) => ILowCodePluginConfig,
-    pluginOptions?: any,
     options?: CompositeObject,
   ): Promise<void>;
   init(pluginPreference?: Map<string, Record<string, PreferenceValueType>>): Promise<void>;
