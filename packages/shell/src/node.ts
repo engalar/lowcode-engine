@@ -84,7 +84,7 @@ export default class Node {
   /**
    * 是否为「模态框」节点
    */
-   get isModal() {
+  get isModal() {
     return this[nodeSymbol].isModal();
   }
 
@@ -208,7 +208,7 @@ export default class Node {
   /**
    * 返回节点的属性集
    */
-   get propsData() {
+  get propsData() {
     return this[nodeSymbol].propsData;
   }
 

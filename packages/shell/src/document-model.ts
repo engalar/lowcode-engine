@@ -6,7 +6,13 @@ import {
   IOnChangeOptions as InnerIOnChangeOptions,
   PropChangeOptions as InnerPropChangeOptions,
 } from '@alilc/lowcode-designer';
-import { TransformStage, RootSchema, NodeSchema, NodeData, GlobalEvent } from '@alilc/lowcode-types';
+import {
+  TransformStage,
+  RootSchema,
+  NodeSchema,
+  NodeData,
+  GlobalEvent,
+} from '@alilc/lowcode-types';
 import Node from './node';
 import Selection from './selection';
 import Detecting from './detecting';
@@ -87,6 +93,11 @@ export default class DocumentModel {
     return ModalNodesManager.create(this[documentSymbol].modalNodesManager);
   }
 
+  // @TODO: 不能直接暴露
+  get dropLocation() {
+    return this[documentSymbol].dropLocation;
+  }
+
   /**
    * 根据 nodeId 返回 Node 实例
    * @param nodeId
@@ -157,7 +168,7 @@ export default class DocumentModel {
    * 当前 document 新增节点事件
    */
   onAddNode(fn: (node: Node) => void) {
-    this[documentSymbol].onNodeCreate((node: InnerNode) => {
+    return this[documentSymbol].onNodeCreate((node: InnerNode) => {
       fn(Node.create(node)!);
     });
   }
@@ -166,7 +177,7 @@ export default class DocumentModel {
    * 当前 document 删除节点事件
    */
   onRemoveNode(fn: (node: Node) => void) {
-    this[documentSymbol].onNodeDestroy((node: InnerNode) => {
+    return this[documentSymbol].onNodeDestroy((node: InnerNode) => {
       fn(Node.create(node)!);
     });
   }

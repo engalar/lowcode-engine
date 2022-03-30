@@ -32,10 +32,10 @@ export default class Event {
    * @param listener 事件回调
    */
   on(event: string, listener: (...args: unknown[]) => void) {
-    if (event.startsWith('designer')) {
-      logger.warn('designer events are disabled');
-      return;
-    }
+    // if (event.startsWith('designer')) {
+    //   logger.warn('designer events are disabled');
+    //   return;
+    // }
     this[editorSymbol].on(event, listener);
   }
 
@@ -60,6 +60,15 @@ export default class Event {
       return;
     }
     this[editorSymbol].emit(`${this.options.prefix}:${event}`, ...args);
+  }
+
+  /**
+   * DO NOT USE if u fully understand what this method does.
+   * @param event
+   * @param args
+   */
+  __internalEmit__(event: string, ...args: unknown[]) {
+    this[editorSymbol].emit(event, ...args);
   }
 }
 
